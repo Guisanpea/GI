@@ -19,16 +19,16 @@ trait Tables {
   def ddl = schema
 
   /** Entity class storing rows of table Tpermiso
-   *  @param rolname Database column rolName SqlType(varchar), Length(50,true)
-   *  @param pantalla Database column pantalla SqlType(varchar), Length(50,true)
-   *  @param acceso Database column acceso SqlType(bit)
-   *  @param modificacion Database column modificacion SqlType(bit) */
+    *  @param rolname Database column rolName SqlType(varchar), Length(50,true)
+    *  @param pantalla Database column pantalla SqlType(varchar), Length(50,true)
+    *  @param acceso Database column acceso SqlType(bit)
+    *  @param modificacion Database column modificacion SqlType(bit) */
   case class TpermisoRow(rolname: String, pantalla: String, acceso: Boolean, modificacion: Boolean)
 
   /** GetResult implicit for fetching TpermisoRow objects using plain SQL queries */
   implicit def GetResultTpermisoRow(implicit e0: GR[String], e1: GR[Boolean]): GR[TpermisoRow] = GR{
     prs => import prs._
-    TpermisoRow.tupled((<<[String], <<[String], <<[Boolean], <<[Boolean]))
+      TpermisoRow.tupled((<<[String], <<[String], <<[Boolean], <<[Boolean]))
   }
   /** Table description of table tPermiso. Objects of this class serve as prototypes for rows in queries. */
   class Tpermiso(_tableTag: Tag) extends profile.api.Table[TpermisoRow](_tableTag, Some("dbo"), "tPermiso") {
@@ -55,15 +55,15 @@ trait Tables {
   lazy val Tpermiso = new TableQuery(tag => new Tpermiso(tag))
 
   /** Entity class storing rows of table Tpiezas
-   *  @param id Database column ID SqlType(int identity), PrimaryKey
-   *  @param nombre Database column NOMBRE SqlType(varchar), Length(255,true)
-   *  @param fabricante Database column FABRICANTE SqlType(varchar), Length(255,true)
-   *  @param idTipo Database column ID_TIPO SqlType(varchar), Length(4,true) */
+    *  @param id Database column ID SqlType(int identity), PrimaryKey
+    *  @param nombre Database column NOMBRE SqlType(varchar), Length(255,true)
+    *  @param fabricante Database column FABRICANTE SqlType(varchar), Length(255,true)
+    *  @param idTipo Database column ID_TIPO SqlType(varchar), Length(4,true) */
   case class TpiezasRow(id: Int, nombre: String, fabricante: String, idTipo: String)
   /** GetResult implicit for fetching TpiezasRow objects using plain SQL queries */
   implicit def GetResultTpiezasRow(implicit e0: GR[Int], e1: GR[String]): GR[TpiezasRow] = GR{
     prs => import prs._
-    TpiezasRow.tupled((<<[Int], <<[String], <<[String], <<[String]))
+      TpiezasRow.tupled((<<[Int], <<[String], <<[String], <<[String]))
   }
   /** Table description of table tPiezas. Objects of this class serve as prototypes for rows in queries. */
   class Tpiezas(_tableTag: Tag) extends profile.api.Table[TpiezasRow](_tableTag, Some("dbo"), "tPiezas") {
@@ -87,14 +87,14 @@ trait Tables {
   lazy val Tpiezas = new TableQuery(tag => new Tpiezas(tag))
 
   /** Entity class storing rows of table Trol
-   *  @param rolname Database column rolName SqlType(varchar), PrimaryKey, Length(50,true)
-   *  @param roldes Database column rolDes SqlType(varchar), Length(255,true)
-   *  @param admin Database column admin SqlType(bit) */
+    *  @param rolname Database column rolName SqlType(varchar), PrimaryKey, Length(50,true)
+    *  @param roldes Database column rolDes SqlType(varchar), Length(255,true)
+    *  @param admin Database column admin SqlType(bit) */
   case class TrolRow(rolname: String, roldes: Option[String], admin: Boolean)
   /** GetResult implicit for fetching TrolRow objects using plain SQL queries */
   implicit def GetResultTrolRow(implicit e0: GR[String], e1: GR[Option[String]], e2: GR[Boolean]): GR[TrolRow] = GR{
     prs => import prs._
-    TrolRow.tupled((<<[String], <<?[String], <<[Boolean]))
+      TrolRow.tupled((<<[String], <<?[String], <<[Boolean]))
   }
   /** Table description of table tRol. Objects of this class serve as prototypes for rows in queries. */
   class Trol(_tableTag: Tag) extends profile.api.Table[TrolRow](_tableTag, Some("dbo"), "tRol") {
@@ -113,13 +113,13 @@ trait Tables {
   lazy val Trol = new TableQuery(tag => new Trol(tag))
 
   /** Entity class storing rows of table Ttipopieza
-   *  @param idTipo Database column ID_TIPO SqlType(varchar), PrimaryKey, Length(4,true)
-   *  @param nombre Database column NOMBRE SqlType(varchar), Length(80,true) */
+    *  @param idTipo Database column ID_TIPO SqlType(varchar), PrimaryKey, Length(4,true)
+    *  @param nombre Database column NOMBRE SqlType(varchar), Length(80,true) */
   case class TtipopiezaRow(idTipo: String, nombre: String)
   /** GetResult implicit for fetching TtipopiezaRow objects using plain SQL queries */
   implicit def GetResultTtipopiezaRow(implicit e0: GR[String]): GR[TtipopiezaRow] = GR{
     prs => import prs._
-    TtipopiezaRow.tupled((<<[String], <<[String]))
+      TtipopiezaRow.tupled((<<[String], <<[String]))
   }
   /** Table description of table tTipoPieza. Objects of this class serve as prototypes for rows in queries. */
   class Ttipopieza(_tableTag: Tag) extends profile.api.Table[TtipopiezaRow](_tableTag, Some("dbo"), "tTipoPieza") {
@@ -136,14 +136,14 @@ trait Tables {
   lazy val Ttipopieza = new TableQuery(tag => new Ttipopieza(tag))
 
   /** Entity class storing rows of table Tusuario
-   *  @param nombre Database column nombre SqlType(varchar), PrimaryKey, Length(50,true)
-   *  @param password Database column password SqlType(varchar), Length(50,true)
-   *  @param rolname Database column rolName SqlType(varchar), Length(50,true) */
+    *  @param nombre Database column nombre SqlType(varchar), PrimaryKey, Length(50,true)
+    *  @param password Database column password SqlType(varchar), Length(50,true)
+    *  @param rolname Database column rolName SqlType(varchar), Length(50,true) */
   case class TusuarioRow(nombre: String, password: String, rolname: String)
   /** GetResult implicit for fetching TusuarioRow objects using plain SQL queries */
   implicit def GetResultTusuarioRow(implicit e0: GR[String]): GR[TusuarioRow] = GR{
     prs => import prs._
-    TusuarioRow.tupled((<<[String], <<[String], <<[String]))
+      TusuarioRow.tupled((<<[String], <<[String], <<[String]))
   }
   /** Table description of table tUsuario. Objects of this class serve as prototypes for rows in queries. */
   class Tusuario(_tableTag: Tag) extends profile.api.Table[TusuarioRow](_tableTag, Some("dbo"), "tUsuario") {
