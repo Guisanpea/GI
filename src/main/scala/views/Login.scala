@@ -17,7 +17,7 @@ object Login extends JFXApp {
     var pass = ""
     title = "Log In"
     scene = new Scene(400, 250) {
-      fill = Color.Bisque
+      fill = Color.MistyRose
       val buttonOK = new Button("OK") {
         prefWidth = 100
       }
@@ -38,6 +38,12 @@ object Login extends JFXApp {
       labelPass.layoutX = 75
       labelPass.layoutY = 125
 
+      val labelBien = new Label ("Bienvenido")
+      labelBien.layoutX = 75
+
+
+
+
       val textUser = new TextField(){
         prefWidth = 150
       }
@@ -50,7 +56,7 @@ object Login extends JFXApp {
       textPass.layoutX = 225
       textPass.layoutY = 125
 
-      content = List(buttonOK, buttonCancel, labelUser, labelPass,textPass, textUser)
+      content = List(textUser,labelBien,textPass, buttonOK, buttonCancel, labelUser, labelPass)
 
       buttonOK.onAction = (e:ActionEvent) => {
         user = textUser.text.value
