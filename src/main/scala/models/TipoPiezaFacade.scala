@@ -37,4 +37,12 @@ object TipoPiezaFacade {
         .result
     ), Duration.Inf).head
   }
+
+  def getByNombre(nombre: String): _root_.models.Tables.TtipopiezaRow = {
+    Await.result(DB.db.run(
+      tTipopiezaQuery
+        .filter(_.nombre === nombre )
+        .result
+    ), Duration.Inf).head
+  }
 }

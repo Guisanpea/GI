@@ -1,5 +1,7 @@
 package models
 
+import slick.ast.ColumnOption.AutoInc
+
 /** Stand-alone Slick data model for immediate use */
 object Tables extends {
   val profile = slick.jdbc.SQLServerProfile
@@ -72,7 +74,7 @@ trait Tables {
     def ? = (Rep.Some(id), Rep.Some(nombre), Rep.Some(fabricante), Rep.Some(idTipo)).shaped.<>({r=>import r._; _1.map(_=> TpiezasRow.tupled((_1.get, _2.get, _3.get, _4.get)))}, (_:Any) =>  throw new Exception("Inserting into ? projection not supported."))
 
     /** Database column ID SqlType(int identity), PrimaryKey */
-    val id: Rep[Int] = column[Int]("ID", O.PrimaryKey)
+    val id: Rep[Int] = column[Int]("ID", O.PrimaryKey, O.AutoInc)
     /** Database column NOMBRE SqlType(varchar), Length(255,true) */
     val nombre: Rep[String] = column[String]("NOMBRE", O.Length(255,varying=true))
     /** Database column FABRICANTE SqlType(varchar), Length(255,true) */
@@ -115,7 +117,9 @@ trait Tables {
   /** Entity class storing rows of table Ttipopieza
     *  @param idTipo Database column ID_TIPO SqlType(varchar), PrimaryKey, Length(4,true)
     *  @param nombre Database column NOMBRE SqlType(varchar), Length(80,true) */
-  case class TtipopiezaRow(idTipo: String, nombre: String)
+  case class TtipopiezaRow(idTipo: String, nombre: String) {
+    override def toString: String = nombre
+  }
   /** GetResult implicit for fetching TtipopiezaRow objects using plain SQL queries */
   implicit def GetResultTtipopiezaRow(implicit e0: GR[String]): GR[TtipopiezaRow] = GR{
     prs => import prs._

@@ -15,6 +15,14 @@ object PiezaFacade {
 
   def getAll: Seq[TpiezasRow] = Await.result(DB.db.run(tPiezaQuery.result), Duration.Inf)
 
+  def getAllByTipo(idTipo: String) = {
+    Await.result(DB.db.run(
+      tPiezaQuery
+        .filter(_.idTipo === idTipo)
+        .result
+    ), Duration.Inf)
+  }
+
   def delete(piezas: Tables.TpiezasRow): Int = {
     Await.result(DB.db.run(
       tPiezaQuery
@@ -24,9 +32,10 @@ object PiezaFacade {
 
   def update(piezas: Tables.TpiezasRow): Int = {
     Await.result(DB.db.run(
-      tPiezaQuery
-        .filter(_.id === piezas.id)
-        .update(piezas)
+      sqlu"""UPDATE tPiezas
+          SET NOMBRE = ${piezas.nombre}, FABRICANTE=${piezas.fabricante}
+          WHERE ID = ${piezas.id}
+        """
     ), Duration.Inf)
   }
 
